@@ -26,6 +26,8 @@ type Activity struct {
 	Secrets *Secrets
 	// Clickable buttons that open a URL in the browser
 	Buttons []*Button
+	// Activity type (0: Playing, 1: Streaming, 2: Listening, 3: Watching, 4: Custom, 5: Competing)
+	Type int
 }
 
 // Button holds a label and the corresponding URL that is opened on press
@@ -66,6 +68,7 @@ type Secrets struct {
 
 func mapActivity(activity *Activity) *PayloadActivity {
 	final := &PayloadActivity{
+		Type:    activity.Type,
 		Details: activity.Details,
 		State:   activity.State,
 		Assets: PayloadAssets{
